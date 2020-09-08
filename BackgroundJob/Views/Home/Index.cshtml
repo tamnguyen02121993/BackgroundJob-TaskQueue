@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var error = TempData["Error"]?.ToString();
+    var success = TempData["Success"]?.ToString();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<form asp-action="ResizeImage" asp-controller="Home">
+    <div class="form-group">
+        <label for="srcDirectory">Source Directory</label>
+        <input type="text" class="form-control" id="srcDirectory" name="srcDirectory" aria-describedby="srcDirectoryHelp">
+        <small id="srcDirectoryHelp" class="form-text text-muted">The directory contain images to resize.</small>
+    </div>
+    <div class="form-group">
+        <label for="destDirectory">Destination Directory</label>
+        <input type="text" class="form-control" id="destDirectory" name="destDirectory" aria-describedby="destDirectoryHelp">
+        <small id="destDirectoryHelp" class="form-text text-muted">The destination directory to save images resized.</small>
+    </div>
+    <div class="form-group">
+        <label for="width">Width</label>
+        <input type="number" min="100" max="1000" class="form-control" id="width" name="width" aria-describedby="widthHelp">
+        <small id="widthHelp" class="form-text text-muted">The width of image to resize.</small>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            debugger
+            if ('@error') {
+                toastr.error('@error');
+            }
+
+            if ('@success') {
+                toastr.success('@success');
+            }
+        });
+    </script>
+}
